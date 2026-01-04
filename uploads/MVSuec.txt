@@ -1,0 +1,278 @@
+Daftar Lengkap Elemen, Tag, dan Fitur yang Bisa Digunakan di Dalam <template> Vue.js
+
+Di dalam <template>, Vue menggunakan HTML biasa, tetapi dengan tambahan
+fitur khusus seperti: - Komponen custom - Directive Vue - Interpolasi -
+Binding - Event - Built-in components
+
+Berikut penjelasan lengkapnya.
+
+------------------------------------------------------------------------
+
+1. HTML Biasa (Semua Tag HTML Valid)
+
+Semua elemen HTML dapat digunakan: - <div> - <span> - <p> - <button> -
+<input> - <form> - <section> - <header> - <footer> - <ul>, <li> -
+<table>, <tr>, <td> - dan seterusnya
+
+Vue tidak mengganti HTML — hanya menambah fitur.
+
+------------------------------------------------------------------------
+
+2. Interpolasi
+
+Digunakan untuk menampilkan data:
+
+    {{ message }}
+    {{ count + 1 }}
+    {{ user.name }}
+
+------------------------------------------------------------------------
+
+3. Binding Atribut (v-bind)
+
+    <img :src="imageUrl">
+    <button :disabled="isDisabled">Click</button>
+    <div :class="{ active: isActive }">
+
+Shortcut:
+
+    :href="link"
+    :title="title"
+
+------------------------------------------------------------------------
+
+4. Event (v-on)
+
+    <button @click="doSomething">OK</button>
+    <input @input="updateText">
+
+Shortcut:
+
+    @click=""
+    @keyup=""
+    @submit.prevent=""
+
+------------------------------------------------------------------------
+
+5. Directive Vue (Core)
+
+Directive adalah “perintah” khusus untuk elemen HTML.
+
+5.1 v-if
+
+    <div v-if="isLoggedIn">Welcome</div>
+
+5.2 v-else / v-else-if
+
+    <div v-if="x > 10">A</div>
+    <div v-else-if="x > 5">B</div>
+    <div v-else>C</div>
+
+5.3 v-show
+
+    <p v-show="visible">Hello</p>
+
+5.4 v-for
+
+    <li v-for="item in items" :key="item.id">{{ item.name }}</li>
+
+5.5 v-model
+
+Untuk input binding dua arah:
+
+    <input v-model="name">
+
+5.6 v-bind
+
+    <div v-bind:class="myClass">
+
+Shortcut:
+
+    :class=""
+
+5.7 v-on
+
+    v-on:click
+
+Shortcut:
+
+    @click
+
+5.8 v-slot
+
+Untuk slot komponen:
+
+    <template v-slot:header>
+      <h1>Title</h1>
+    </template>
+
+5.9 v-pre
+
+Tidak memproses template:
+
+    <span v-pre>{{ ini tidak akan diproses }}</span>
+
+5.10 v-once
+
+Render hanya sekali:
+
+    <p v-once>{{ time }}</p>
+
+5.11 v-memo
+
+Optimasi render (Vue 3.3+)
+
+------------------------------------------------------------------------
+
+6. Built-in Components (Tag Khusus Buatan Vue)
+
+Ini bukan HTML, tetapi komponen bawaan Vue.
+
+6.1 <component>
+
+    <component :is="currentView"></component>
+
+6.2 <transition>
+
+Animasi masuk/keluar satu elemen.
+
+6.3 <transition-group>
+
+Animasi list.
+
+6.4 <keep-alive>
+
+Caching komponen saat berpindah halaman.
+
+    <keep-alive>
+      <component :is="view"></component>
+    </keep-alive>
+
+6.5 <slot>
+
+Tempat menaruh konten dari parent.
+
+6.6 <teleport>
+
+Memindahkan elemen ke DOM lain.
+
+    <teleport to="body">
+      <modal />
+    </teleport>
+
+------------------------------------------------------------------------
+
+7. Tag Router (Jika Menggunakan Vue Router)
+
+Vue Router menambah elemen baru:
+
+7.1 <router-link>
+
+Navigasi tanpa reload:
+
+    <router-link to="/home">Home</router-link>
+
+7.2 <router-view>
+
+Tempat halaman dirender:
+
+    <router-view></router-view>
+
+------------------------------------------------------------------------
+
+8. Tag Pinia (State Management)
+
+Pinia tidak menambah tag di template. Tetapi datanya bisa dipakai:
+
+    <p>{{ store.count }}</p>
+    <button @click="store.increment()">+</button>
+
+------------------------------------------------------------------------
+
+9. Komponen Custom Buatan Kamu
+
+Contoh:
+
+    <Navbar />
+    <MyButton />
+    <TodoItem />
+
+Ini hanya HTML custom yang diproses Vue menjadi komponen.
+
+------------------------------------------------------------------------
+
+10. Template Expression (Yang Boleh dan Tidak Boleh)
+
+Boleh:
+
+    {{ count + 1 }}
+    {{ ok ? 'yes' : 'no' }}
+    {{ message.toUpperCase() }}
+
+Tidak boleh (karena berbahaya atau tidak efisien):
+
+    {{ if () {} }} ❌
+    {{ while () {} }} ❌
+    {{ new Date() }} ❌
+
+------------------------------------------------------------------------
+
+11. Fragment (Vue 3)
+
+Vue 3 memungkinkan template tanpa wrapper:
+
+    <>
+      <h1>A</h1>
+      <p>B</p>
+    </>
+
+------------------------------------------------------------------------
+
+12. Text Refs & Template Refs
+
+Dalam template:
+
+    <input ref="inputBox" />
+
+Di script:
+
+    const inputBox = ref(null)
+
+------------------------------------------------------------------------
+
+13. Comment Template
+
+Komentar di template:
+
+    <!-- Ini komentar -->
+
+------------------------------------------------------------------------
+
+14. Dynamic Component
+
+    <component :is="currentComponent"></component>
+
+------------------------------------------------------------------------
+
+15. Template <template>
+
+Tag ini tidak dirender, tapi berguna untuk: - v-if grup - slot - v-for
+grup
+
+Contoh:
+
+    <template v-if="show">
+      <h1>Judul</h1>
+      <p>Teks</p>
+    </template>
+
+------------------------------------------------------------------------
+
+16. Kesimpulan
+
+Di dalam <template>, Vue memperbolehkan: - Semua HTML - Komponen
+custom - Built-in component - Syntax Vue (directive, binding, event) -
+Dynamic component - Router components - Slot dan teleport
+
+Vue tidak mengganti HTML, hanya memperluasnya sehingga lebih canggih
+untuk membangun aplikasi besar.
